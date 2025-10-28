@@ -6,9 +6,7 @@ Score_of_Mendelianism_tower <-function(Alpha,Sigma,Zstat,leads,chr_pos,alpha=5e-
   SoMs = c()
   d = ncol(as.matrix(Alpha))
   
-  cnt = 1
   for (i in 1:length(leads)) {
-    cat("\r",cnt)
     if (d > 1){
       a <- Alpha[, leads[i], drop = FALSE]      # alpha_j (m x 1)
     } else{
@@ -27,7 +25,6 @@ Score_of_Mendelianism_tower <-function(Alpha,Sigma,Zstat,leads,chr_pos,alpha=5e-
     }
     
     SoMs = c(SoMs,SoM)
-    cnt = cnt + 1
   }
   names(SoMs) = leads
 

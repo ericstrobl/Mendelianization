@@ -21,7 +21,7 @@ Mendelianization <- function(Zstat, SoM = FALSE, chr_pos = NULL, alpha = 5e-8) {
   ### COMPUTE SCORE OF MENDELIANISM
   SoMs = c()
   if (SoM){
-    leads = find_towers(chr_pos,pval) # find towers with Q statistics
+    leads = find_leads(chr_pos,pval) # find towers with Q statistics
     SoMs = Score_of_Mendelianism_tower(Alpha,Gamma,Z,leads,chr_pos)
   }
   
