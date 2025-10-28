@@ -12,6 +12,8 @@ An algorithm that uses summary z-statistics to learn weighted combinations of ou
 
 # Sample Run
 
+The real sample data is in the Data folder
+
 > load("DepAnx_zstats.RData") # load sample chromosome 7 z-statistics (also load chromosomes and positions dataframe)
 
 > out_SoM = Mendelianization(Z,SoM=T,chr_pos) # with Score of Mendelianization
