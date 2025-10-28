@@ -12,12 +12,16 @@ An algorithm that uses summary z-statistics to learn weighted combinations of ou
 
 # Sample Run
 
-> load("DepAnx_zstats.RData") # load z-statistics (also load chromosomes and positions dataframe for Score of Mendelianization)
+> load("DepAnx_zstats.RData") # load sample chromosome 7 z-statistics (also load chromosomes and positions dataframe)
 
-> out = Mendelianization(Z,SoM=F) # without Score of Mendelianization
+> out_SoM = Mendelianization(Z,SoM=T,chr_pos) # with Score of Mendelianization
 
-> out_SoM = Mendelianization(Z,SoM=T,chr_pos) # without Score of Mendelianization
+> print(out_SoM$SoMs) # print SoMs for leads
 
-> hist(out$pval) # p-values
+> leads = as.numeric(names(out_SoM$SoMs))
 
-> out$Alpha_p[,1] # interpretable canonical coefficients for first variant
+> print(out_SoM$pval[leads[1]]) # p-value of lead variant
+
+> plot_tower(out_Mendel,leads[1],chr_pos) # Manhattan plot of fixed outcome of the lead variant applied genome-wide
+
+> out$Alpha_p[,leads[1]] # interpretable canonical coefficients for the lead variant
