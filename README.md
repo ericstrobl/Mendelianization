@@ -12,7 +12,7 @@ An algorithm that uses summary z-statistics to learn weighted combinations of ou
 
 # Sample Run
 
-The real sample data is in the Data folder
+Download the real sample data in the Data folder and place it in your working directory.
 
 > load("DepAnx_zstats.RData") # load sample chromosome 7 z-statistics (also load chromosomes and positions dataframe)
 
