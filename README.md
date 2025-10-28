@@ -5,13 +5,19 @@ An algorithm that uses summary z-statistics to learn weighted combinations of ou
 # Installation
 
 > library(devtools)
+
 > install_github("ericstrobl/Mendelianization")
+
 > library(Mendelianization)
 
 # Sample Run
 
-> load("DepAnx_zstats.RData") # load z-statistics (also load chrosomes and positions dataframe for Score of Mendelianization)
+> load("DepAnx_zstats.RData") # load z-statistics (also load chromosomes and positions dataframe for Score of Mendelianization)
+
 > out = Mendelianization(Z,SoM=F) # without Score of Mendelianization
+
 > out_SoM = Mendelianization(Z,SoM=T,chr_pos) # without Score of Mendelianization
+
 > hist(out$pval) # p-values
+
 > out$Alpha_p[,1] # interpretable canonical coefficients for first variant
