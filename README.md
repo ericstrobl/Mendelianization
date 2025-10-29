@@ -20,6 +20,8 @@ Download the real sample data in the Data folder and place it in your working di
 
 > print(out$SoMs) # print SoMs for leads
 
+> hist(out$pval) # should be close to uniform
+
 > leads = as.numeric(names(out$SoMs))
 
 > print(out$pval[leads[1]]) # p-value of first lead variant
