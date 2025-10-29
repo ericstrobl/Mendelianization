@@ -24,6 +24,6 @@ Download the real sample data in the Data folder and place it in your working di
 
 > print(out_SoM$pval[leads[1]]) # p-value of first lead variant
 
-> plot_tower(out_Mendel,leads[1],chr_pos) # Manhattan plot of fixed outcome of the first lead variant applied genome-wide
+> plot_tower(out_SoM,Z,leads[1],chr_pos) # Manhattan plot of fixed outcome of the first lead variant applied genome-wide
 
 > out$Alpha_p[,leads[1]] # interpretable canonical coefficients of the first lead variant
