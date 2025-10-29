@@ -1,10 +1,10 @@
-plot_tower <- function(out, lead, chr_pos){
+plot_tower <- function(out, Z, lead, chr_pos){
   # out = output of Mendelianization
   # lead = index of lead variant you want to focus on
   # chr_pos: data frame with one column containing chromosomes and another containing sorted positions (increasing)
   
-  a <- out_Mendel$Alpha[, lead, drop = FALSE]
-  denom_i <- sqrt(pmax(as.numeric(t(a) %*% out_Mendel$meta$Gamma %*% a), 1e-20))
+  a <- out$Alpha[, lead, drop = FALSE]
+  denom_i <- sqrt(pmax(as.numeric(t(a) %*% out$meta$Gamma %*% a), 1e-20))
   
   Zn <- as.vector((Z %*% a) / denom_i)
   ps= 2*pnorm(-abs(Zn))
@@ -26,4 +26,5 @@ plot_tower <- function(out, lead, chr_pos){
     cex = 0.5, cex.axis = 0.9, las = 2
   )
   
+
 }
