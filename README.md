@@ -22,7 +22,7 @@ Run the Mendelianization algorithm:
 
 > out = Mendelianization(Z,SoM=T,chr_pos)
 
-The **Score of Mendelianism** (SoM) quantifies the extent to which the outcome optimized for a single variant concentrates at one locus, ranging from 0 to 1. Larger values correspond to stronger Mendelian-like (single locus) behavior. For this dataset, the expected result is perfect Mendelianism (SoM = 1) for a lead variant, since we have optimized over 52 diverse measures of depression and anxiety:
+The **Score of Mendelianism** (SoM) quantifies the extent to which the outcome optimized for a single variant concentrates at one LD locus, ranging from 0 to 1. Larger values correspond to stronger Mendelian-like (single locus) behavior. For this dataset, the expected result is perfect Mendelianism (SoM = 1) for a lead variant, since we have optimized over 52 diverse measures of depression and anxiety:
 
 > print(out$SoMs) # print SoMs for leads
 
