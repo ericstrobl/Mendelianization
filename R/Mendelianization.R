@@ -14,8 +14,11 @@ Mendelianization <- function(Zstat, SoM = FALSE, chr_pos = NULL, alpha = 5e-8) {
 #'   \item \code{Alpha}: raw canonical coefficients (m × q).
 #'   \item \code{Alpha_p}: interpretable canonical coefficients.
 #'   \item \code{pval}: p-values from the chi-square test with m d.f.
+#'   \item \code{qform}: Q-statistics from the chi-square test with m d.f.
 #'   \item \code{SoMs}: (optional) score(s) of Mendelianism if computed.
-#'   \item \code{meta}: list with \code{Gamma} and \code{Omega} matrices.
+#'   \item \code{chr_pos}: sorted chromosome and positions data frame, matching the order of Alpha (columns), Alpha_p(columns), p-values (indices), Q-statistics (indices), SoMs (names)
+#'   \item \code{Gamma}: covariance matrix of Y'
+#'   \item \code{Omega}: precisin matrix of Y'
 #' }
 
   if (!is.null(chr_pos)) { # sort chr_pos if not already sorted
@@ -53,6 +56,7 @@ Mendelianization <- function(Zstat, SoM = FALSE, chr_pos = NULL, alpha = 5e-8) {
     Omega = Omega
   )
 }
+
 
 
 
