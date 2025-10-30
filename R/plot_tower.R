@@ -1,7 +1,6 @@
-plot_tower <- function(out, Z, lead, chr_pos){
+plot_tower <- function(out, Z, lead){
   # out = output of Mendelianization
   # lead = index of lead variant you want to focus on
-  # chr_pos: data frame with one column containing chromosomes and another containing sorted positions (increasing)
   
   a <- out$Alpha[, lead, drop = FALSE]
   denom_i <- sqrt(pmax(as.numeric(t(a) %*% out$Gamma %*% a), 1e-20))
@@ -9,10 +8,10 @@ plot_tower <- function(out, Z, lead, chr_pos){
   Zn <- as.vector((Z %*% a) / denom_i)
   ps= 2*pnorm(-abs(Zn))
   GWAS <- data.frame(
-    CHR = as.numeric(chr_pos[[1]]),
-    BP  = as.numeric(chr_pos[[2]]),
+    CHR = as.numeric(out$chr_pos[[1]]),
+    BP  = as.numeric(out$chr_pos[[2]]),
     P   = ps,
-    SNP = as.numeric(chr_pos[[1]]),
+    SNP = as.numeric(out$chr_pos[[1]]),
     stringsAsFactors = FALSE
   )
   require(qqman)
@@ -28,4 +27,5 @@ plot_tower <- function(out, Z, lead, chr_pos){
   
 
 }
+
 
