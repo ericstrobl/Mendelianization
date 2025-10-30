@@ -38,7 +38,7 @@ To extract the lead variant and examine its p-value (which incorporates outcome 
 
 A Manhattan plot can also be constructed, which should exhibit a single prominent signal (``tower''), consistent with the SoM of 1:
 
-> plot_tower(out,Z,leads[1],chr_pos) # Manhattan plot of fixed outcome of the first lead variant applied genome-wide
+> plot_tower(out,Z,leads[1],out$chr_pos) # Manhattan plot of fixed outcome of the first lead variant applied genome-wide
 
 Finally, the canonical coefficients associated with the lead variant (or any variant) are directly interpretable across outcomes. In other words, their magnitudes are comparable across different outcomes, thereby facilitating interpretation:
 
