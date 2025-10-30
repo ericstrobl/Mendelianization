@@ -22,7 +22,7 @@ Run the Mendelianization algorithm:
 
 > out = Mendelianization(Z,SoM=T,chr_pos)
 
-The **Score of Mendelianism** (SoM) quantifies the extent to which the lead variant follows Mendelian inheritance, ranging from 0 to 1. Larger values correspond to stronger Mendelian behavior. For this dataset, the expected result is perfect Mendelianism (SoM = 1):
+The **Score of Mendelianism** (SoM) quantifies the extent to which the outcome optimized for a single variant concentrates at one locus, ranging from 0 to 1. Larger values correspond to stronger Mendelian-like (single locus) behavior. For this dataset, the expected result is perfect Mendelianism (SoM = 1) for a lead variant, since we have optimized over 52 diverse measures of depression and anxiety:
 
 > print(out$SoMs) # print SoMs for leads
 
@@ -36,7 +36,7 @@ To extract the lead variant and examine its p-value (which incorporates outcome 
 
 > print(out$pval[leads[1]]) # p-value of first lead variant
 
-A Manhattan plot can also be constructed, which should exhibit a single prominent signal (``tower''), consistent with an SoM of 1:
+A Manhattan plot can also be constructed, which should exhibit a single prominent signal (``tower''), consistent with the SoM of 1:
 
 > plot_tower(out,Z,leads[1],chr_pos) # Manhattan plot of fixed outcome of the first lead variant applied genome-wide
 
