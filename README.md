@@ -12,7 +12,7 @@ The Mendelianization algorithm uses summary z-statistics to learn weighted combi
 
 # Sample Run
 
-Download the real sample data in the _Data_ folder and place it in your working directory:
+Download the real sample data in the _Data_ folder and place it in your working directory. The dataset consists of Pan-UK Biobank summary z-statistics for quality-controlled chromosome 7 variants, evaluated across 52 outcomes that capture diverse dimensions of lifetime depression and anxiety.
 
 > load("DepAnx_zstats.RData") # load sample chromosome 7 z-statistics (also load chromosomes and positions dataframe)
 
