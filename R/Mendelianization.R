@@ -6,7 +6,7 @@ Mendelianization <- function(Zstat, SoM = FALSE, chr_pos = NULL, alpha = 5e-8) {
 #' @param Zstat A q × m numeric matrix of sample z- (or t-) statistics.
 #' @param SoM Logical; whether to compute the Score of Mendelianism. Default: FALSE.
 #' @param chr_pos If \code{SoM = TRUE}, a data frame with two columns: chromosome
-#'   and (increasing) base-pair position.
+#'   and base-pair position, where rows match those of Zstat.
 #' @param alpha Genome-wide significance threshold (used by SoM).
 #'
 #' @returns A list with components:
@@ -17,13 +17,23 @@ Mendelianization <- function(Zstat, SoM = FALSE, chr_pos = NULL, alpha = 5e-8) {
 #'   \item \code{SoMs}: (optional) score(s) of Mendelianism if computed.
 #'   \item \code{meta}: list with \code{Gamma} and \code{Omega} matrices.
 #' }
+
+  if (!is.null(chr_pos)) { # sort chr_pos if not already sorted
+    chr_levels <- c(as.character(1:22), "X", "Y")
+    ord <- order(
+      match(as.character(chr_pos[[1]]), chr_levels),
+      chr_pos[[2]]
+    )
+    chr_pos <- chr_pos[ord, , drop = FALSE]
+    Zstat   <- Zstat[, ord, drop = FALSE] # make sure Zstat has the same new ordering
+  }
   
-  Gamma <- crossprod(Zstat) / nrow(Zstat) # positive semi-definite
+  Gamma <- crossprod(Zstat) / nrow(Zstat) # positive semi-definite; Proposition 3 and Theorem 2 in the paper
   Omega   <- chol2inv(chol(Gamma + 1e-8*diag(diag(Gamma)))) # small regularization to ensure invertibility
-  Alpha <- Omega  %*% t(Zstat)                      # m x q
-  qform <- colSums(t(Zstat) * Alpha) 
-  pval = 1-pchisq(qform,df=ncol(Omega))
-  Alpha_p <- sweep(Alpha, 1, sqrt(diag(Omega)), "/")
+  Alpha <- Omega  %*% t(Zstat) # raw coefficients                      
+  qform <- colSums(t(Zstat) * Alpha) # hypothesis test of Expression (3)
+  pval = 1-pchisq(qform,df=ncol(Omega)) # asymptotic distribution is chi^2_m
+  Alpha_p <- sweep(Alpha, 1, sqrt(diag(Omega)), "/") # Proposition 4
   
   ### COMPUTE SCORE OF MENDELIANISM
   SoMs = c()
@@ -36,8 +46,12 @@ Mendelianization <- function(Zstat, SoM = FALSE, chr_pos = NULL, alpha = 5e-8) {
     Alpha = Alpha,  
     Alpha_p =  Alpha_p,
     pval = pval, 
+    qform = qform,
     SoMs = SoMs,
-    meta  = list(Gamma = Gamma, Omega = Omega)
+    chr_pos = chr_pos, #new positions
+    Gamma = Gamma,
+    Omega = Omega
   )
 }
+
 
