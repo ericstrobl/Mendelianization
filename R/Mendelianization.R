@@ -25,7 +25,7 @@ Mendelianization <- function(Zstat, SoM = FALSE, chr_pos = NULL, alpha = 5e-8) {
       chr_pos[[2]]
     )
     chr_pos <- chr_pos[ord, , drop = FALSE]
-    Zstat   <- Zstat[, ord, drop = FALSE] # make sure Zstat has the same new ordering
+    Zstat   <- Zstat[ord, , drop = FALSE] # make sure Zstat has the same new ordering
   }
   
   Gamma <- crossprod(Zstat) / nrow(Zstat) # positive semi-definite; Proposition 3 and Theorem 2 in the paper
@@ -53,5 +53,6 @@ Mendelianization <- function(Zstat, SoM = FALSE, chr_pos = NULL, alpha = 5e-8) {
     Omega = Omega
   )
 }
+
 
 
