@@ -4,7 +4,7 @@ plot_tower <- function(out, Z, lead, chr_pos){
   # chr_pos: data frame with one column containing chromosomes and another containing sorted positions (increasing)
   
   a <- out$Alpha[, lead, drop = FALSE]
-  denom_i <- sqrt(pmax(as.numeric(t(a) %*% out$meta$Gamma %*% a), 1e-20))
+  denom_i <- sqrt(pmax(as.numeric(t(a) %*% out$Gamma %*% a), 1e-20))
   
   Zn <- as.vector((Z %*% a) / denom_i)
   ps= 2*pnorm(-abs(Zn))
@@ -28,3 +28,4 @@ plot_tower <- function(out, Z, lead, chr_pos){
   
 
 }
+
