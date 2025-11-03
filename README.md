@@ -1,6 +1,6 @@
 # Mendelianization: Concentrating Polygenic Signal into a Single Causal Locus
 
-The Mendelianization algorithm uses summary z-statistics to learn weighted combinations of outcome variables for complex conditions (e.g., symptom dimensions in depression) so that each composite outcome is associated with a single causal locus.
+The [Mendelianization algorithm](https://www.medrxiv.org/content/10.1101/2025.10.31.25339237v1) uses summary z-statistics to learn weighted combinations of outcome variables for complex conditions (e.g., symptom dimensions in depression) so that each composite outcome is associated with a single causal locus.
 
 All code was tested in R version 4.3.1.
 
