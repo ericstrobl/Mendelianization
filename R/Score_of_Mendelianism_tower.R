@@ -17,7 +17,7 @@ Score_of_Mendelianism_tower <-function(Alpha,Sigma,Zstat,leads,chr_pos,alpha=5e-
     Z <- as.vector((Zstat %*% a) / denom_i)
     members = find_lead_tower(chr_pos,2*pnorm(-abs(Z)),leads[i])$members
     
-    if (length(members>0)){
+    if (length(members)>0){
       Z = pmax(abs(Z)-z_alpha,0)
       SoM <- mean(Z[members]) / (mean(Z[members]) + sum(Z[-members]))
     } else{
