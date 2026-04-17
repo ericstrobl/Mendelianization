@@ -3,7 +3,7 @@ find_leads <- function(chr_pos, pvals, p_thr = 5e-8, kb = 500) {
   
   # significant indices (in the working order)
   sig <- which(pvals <= p_thr)
-  if (!length(sig)) return(list(leads = integer(0), members = list()))
+  if (!length(sig)) return(integer(0))
   
   leads <- integer(0)
   
