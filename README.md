@@ -43,3 +43,12 @@ A Manhattan plot can also be constructed, which should exhibit a single prominen
 Finally, the canonical coefficients associated with the lead variant (or any variant) are directly interpretable across outcomes. In other words, their magnitudes are comparable across different outcomes, thereby facilitating interpretation:
 
 > out$Alpha_p[,leads[1]] # interpretable canonical coefficients of the first lead variant
+
+# Updates
+
+**8/27/2026:** We identified that $p$ values can be poorly calibrated when the outcome panel includes traits with diffuse associations across many variants genome-wide, such as quantitative blood-cell or neuroimaging traits. In this setting, associated variants can make a nonvanishing aggregate contribution to the genome-wide covariance estimator, violating Condition 2 (vanishing aggregate contamination) of Theorem 2. Selecting a sufficiently nonredundant subset of outcomes can also be burdensome when the outcome panel is large. We therefore added two automated options:
+
+- `screen_Gamma = TRUE` uses adaptive central-null estimation of the covariance matrix `Gamma` to improve null calibration.
+- `screen_outcomes = TRUE` iteratively removes redundant outcomes until the null-correlation condition number is at most 100.
+
+The new default behavior is `screen_Gamma = TRUE` and `screen_outcomes = TRUE`. To recover the fully legacy behavior, set both options to `FALSE`.
