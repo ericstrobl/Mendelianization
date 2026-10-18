@@ -40,6 +40,8 @@ A Manhattan plot can also be constructed, which should exhibit a single prominen
 
 > plot_tower(out,Z,leads[1]) # Manhattan plot of fixed outcome of the first lead variant applied genome-wide
 
-Finally, the canonical coefficients associated with the lead variant (or any variant) are directly interpretable across outcomes. In other words, their magnitudes are comparable across different outcomes, thereby facilitating interpretation:
+Finally, Mendelianization provides two complementary sets of interpretable coefficients for each variant. `Alpha_p` represents standardized associations with the unique (residualized) components of each outcome, accounting for correlations among outcomes. `Marginal_p` represents standardized marginal associations with the original outcomes, without accounting for these correlations. Both are on the same scale, with magnitudes directly comparable across outcomes.
 
-> out$Alpha_p[,leads[1]] # interpretable canonical coefficients of the first lead variant
+> out$Alpha_p[,leads[1]]    # Residualized coefficients for the first lead variant
+
+> out$Marginal_p[,leads[1]] # Marginal coefficients for the same variant
