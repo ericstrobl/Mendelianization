@@ -113,6 +113,9 @@ Mendelianization <- function(
 
   # Marginal coefficients
   Marginal_p <- sweep(t(Zstat), 1, sqrt(diag(Gamma)), "/")
+
+  rownames(Alpha_p) <- rownames(Marginal_p)
+  rownames(Alpha) <- rownames(Marginal_p)
   
   # Return inference results, covariance quantities, and screening metadata.
   list(
