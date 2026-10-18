@@ -31,6 +31,10 @@
 #'     and variants in columns.
 #'   \item `Alpha_p`: canonical coefficients standardized using the diagonal of
 #'     the precision matrix.
+#'   \item `Marginal_p`: marginal genotype-outcome associations standardized
+#'     by the estimated outcome standard deviations, with retained outcomes
+#'     in rows and variants in columns. These are on the same sqrt(n) scale
+#'     as `Alpha_p`, but without residualizing outcomes against one another.
 #'   \item `pval`: p-values from the learning-aware chi-square tests.
 #'   \item `qform`: corresponding quadratic-form statistics.
 #'   \item `SoMs`: Score-of-Mendelianism results when requested; otherwise an
@@ -106,11 +110,15 @@ Mendelianization <- function(
     leads <- find_leads(chr_pos, pval)
     SoMs <- Score_of_Mendelianism_tower(Alpha,Gamma,Zstat,leads,chr_pos)
   }
+
+  # Marginal coefficients
+  Marginal_p <- sweep(t(Zstat), 1, sqrt(diag(Gamma)), "/")
   
   # Return inference results, covariance quantities, and screening metadata.
   list(
     Alpha = Alpha,
     Alpha_p = Alpha_p,
+    Marginal_p = Marginal_p,
     pval = pval,
     qform = qform,
     SoMs = SoMs,
